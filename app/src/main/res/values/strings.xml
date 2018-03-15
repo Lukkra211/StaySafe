@@ -1,0 +1,27 @@
+<resources>
+    <string name="home_btn_virtual" translatable="false">Virtual danger</string>
+    <string name="home_btn_real" translatable="false">Real danger</string>
+
+    <string name="notify_Title" translatable="false">Question?</string>
+    <string name="True" translatable="false">Yes</string>
+    <string name="False" translatable="false">No</string>
+    <string name="Notify_BadAn" translatable="false">Bad answer!</string>
+    <string name="app_name" translatable="false">StaySafe</string>
+    <string name="Home_btn_dangerous" translatable="false">Internet Dangers</string>
+    <string name="Home_btn_avoid" translatable="false">Real-life Dangers</string>
+    <string name="Home_btn_tips" translatable="false">Quick tips</string>
+    <string name="home_dialog_choose" translatable="false">Choose the topics</string>
+    <string name="logout" translatable="false">LOGOUT</string>
+    <string name="avoid_dangers_on_internet" translatable="false">Avoid Dangers on Internet</string>
+    <string name="avoid_dangers_in_real_life" translatable="false">Avoid Dangers in real life</string>
+    <string name="name_admin" translatable="false">Name(admin)</string>
+    <string name="pass_admin" translatable="false">Pass(admin)</string>
+    <string name="register" translatable="false">Register</string>
+    <string name="login" translatable="false">login</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="pass" translatable="false">Pass</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="back" translatable="false">back</string>
+    <string name="login1" translatable="false">Login</string>
+
+</resources>
