@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:text=""/>
+    <TextView
+        android:id="@+id/timeToRead"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:text=""/>
+    <TextView
+        android:id="@+id/subArticles"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:text=""/>
+
+</LinearLayout>

@@ -3,6 +3,16 @@
     android:id="@+id/activity_internet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="10"
     android:orientation="vertical">
-
+    <TextView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:text="Testy"/>
+    <ListView
+        android:id="@+id/TestArticlesContainer"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="8"/>
 </LinearLayout>
