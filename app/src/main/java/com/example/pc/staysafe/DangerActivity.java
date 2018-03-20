@@ -13,13 +13,10 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.pc.staysafe.ListAdapter.ArticlesListAdapter;
 import com.example.pc.staysafe.Model.Objects.Article;
 import com.example.pc.staysafe.Model.TestModel;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Shows all articles on given danger type
@@ -32,11 +29,9 @@ public class DangerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danger);
+        ArrayList<Article> arts = testModel.getArticles(TestModel.DangerType.REAL);
 
-        ArrayList<Article> art = testModel.getArticles(TestModel.DangerType.REAL);
-
-        ListView testArticles = findViewById(R.id.TestArticlesContainer);
-        for (Article article : art) {
+        for (Article article : arts) {
 
             Log.w("AAA Title", article.getTitle());
             Log.w("AAA Time", Integer.toString(article.getTimeToRead()));
@@ -46,32 +41,9 @@ public class DangerActivity extends AppCompatActivity {
             }
         }
 
-       ArticlesListAdapter testArticlesAdapter = new ArticlesListAdapter(this, art);
+        ListView testArticles = findViewById(R.id.TestArticlesContainer);
+
+        ArticlesListAdapter testArticlesAdapter = new ArticlesListAdapter(this, arts);
         testArticles.setAdapter(testArticlesAdapter);
-    }
-}
- class ArticlesListAdapter extends ArrayAdapter<Article> {
-     public ArticlesListAdapter(Context context, ArrayList<Article> art) {
-         super(context, 0, art);
-     }
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        Article art = getItem(position);
-
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.test_article, parent, false);
-        }
-
-        TextView title = (TextView) convertView.findViewById(R.id.title);
-        TextView timeToRead = (TextView) convertView.findViewById(R.id.timeToRead);
-        if(art.getTitle() != null){
-        title.setText("Nazev testu " + art.getTitle());
-        }
-        if(Integer.toString(art.getTimeToRead()) != null) {
-            timeToRead.setText("Tvůj čas pro čtení je: " + Integer.toString(art.getTimeToRead()));
-        }
-
-        return convertView;
     }
 }
