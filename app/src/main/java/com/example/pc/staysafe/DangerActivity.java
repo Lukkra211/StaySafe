@@ -1,5 +1,6 @@
 package com.example.pc.staysafe;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class DangerActivity extends AppCompatActivity {
 
     private TestModel testModel = new TestModel();
-    private TextView pageTitle;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,8 @@ public class DangerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_danger);
 
         ArrayList<Article> arts = testModel.getArticles(TestModel.DangerType.REAL);
-        pageTitle = findViewById(R.id.pageTitle);
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_layout);
 
         for (Article article : arts) {
 
@@ -48,8 +50,19 @@ public class DangerActivity extends AppCompatActivity {
         testArticles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Article text = (Article) parent.getItemAtPosition(position);
-                pageTitle.setText(text.getTitle());
+                dialog.setTitle(text.getTitle());
+                TextView dialogTitle = (TextView) dialog.findViewById(R.id.dialogTitle);
+                TextView dialogText = dialog.findViewById(R.id.dialogText);
+                String subarticles = "";
+
+                for (String a:text.getSubarticles()) {
+                    subarticles += a +" ";
+                }
+                dialogText.setText(subarticles);
+                dialogTitle.setText(text.getTitle());
+                dialog.show();
             }
         });
     }

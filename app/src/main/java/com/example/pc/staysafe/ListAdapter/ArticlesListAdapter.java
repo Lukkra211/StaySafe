@@ -31,7 +31,7 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
         Article art = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.test_article, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.test_article_layout, parent, false);
         }
 
         TextView titleText = (TextView) convertView.findViewById(R.id.mainTitle);
