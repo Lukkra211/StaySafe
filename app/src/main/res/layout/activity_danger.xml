@@ -10,10 +10,21 @@
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_weight="2"
-        android:text="Testy"/>
+        android:textAlignment="center"
+        android:background="#360a64"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50sp"
+        android:text="@string/dangerATitle"/>
     <ListView
         android:id="@+id/TestArticlesContainer"
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_weight="8"/>
+        android:layout_weight="7"/>
+    <ImageButton
+        android:id="@+id/dangerAReturnB"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/return_image"
+        />
 </LinearLayout>

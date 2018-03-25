@@ -24,4 +24,6 @@
     <string name="back" translatable="false">back</string>
     <string name="login1" translatable="false">Login</string>
 
+    <string name="dangerATitle" translatable="true">Testy</string>
+    <string name="returnButton" translatable="true">ZPĚT</string>
 </resources>

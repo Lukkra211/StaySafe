@@ -1,11 +1,13 @@
 package com.example.pc.staysafe;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,6 +22,8 @@ import java.util.ArrayList;
 public class DangerActivity extends AppCompatActivity {
 
     private TestModel testModel = new TestModel();
+    private ImageButton returnButton;
+    ListView testArticles;
     private Dialog dialog;
 
     @Override
@@ -27,24 +31,29 @@ public class DangerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danger);
 
-        ArrayList<Article> arts = testModel.getArticles(TestModel.DangerType.REAL);
+        initParams();
+        initUI();
+    }
+
+    private void initParams() {
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_layout);
+        testArticles = findViewById(R.id.TestArticlesContainer);
+        returnButton = findViewById(R.id.dangerAReturnB);
 
-        for (Article article : arts) {
-
-            Log.w("AAA Title", article.getTitle());
-            Log.w("AAA Time", Integer.toString(article.getTimeToRead()));
-
-            for (String subarticle : article.getSubarticles()) {
-                Log.w("AAA SubArticles", subarticle);
-            }
-        }
-
-        final ListView testArticles = findViewById(R.id.TestArticlesContainer);
-
+        ArrayList<Article> arts = testModel.getArticles(TestModel.DangerType.REAL);
         ArticlesListAdapter testArticlesAdapter = new ArticlesListAdapter(this, arts);
         testArticles.setAdapter(testArticlesAdapter);
+    }
+
+    private void initUI() {
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Make Item in listview clickable and change title of page when cliked
         testArticles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,17 +62,19 @@ public class DangerActivity extends AppCompatActivity {
 
                 Article text = (Article) parent.getItemAtPosition(position);
                 dialog.setTitle(text.getTitle());
-                TextView dialogTitle = (TextView) dialog.findViewById(R.id.dialogTitle);
+                TextView dialogTitle = dialog.findViewById(R.id.dialogTitle);
                 TextView dialogText = dialog.findViewById(R.id.dialogText);
                 String subarticles = "";
 
-                for (String a:text.getSubarticles()) {
-                    subarticles += a +" ";
+                for (String sub:text.getSubarticles()) {
+                    subarticles += sub +" ";
                 }
+
                 dialogText.setText(subarticles);
                 dialogTitle.setText(text.getTitle());
                 dialog.show();
             }
         });
     }
+
 }
