@@ -1,4 +1,4 @@
-package com.example.pc.staysafe.model.entity;
+package com.example.pc.staysafe.Model.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

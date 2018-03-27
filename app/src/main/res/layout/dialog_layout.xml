@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     android:layout_height="match_parent"
     android:background="@drawable/border_background">
 
     <ImageButton
+        android:id="@+id/endDialogButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -19,10 +21,12 @@
         android:padding="10sp">
 
         <View
-            android:layout_width="1dp"
+            android:id="@+id/dangerView"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_gravity="left"
-            android:background="@color/colorPrimary" />
+            android:background="@drawable/circle_background"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/dialogTitle"

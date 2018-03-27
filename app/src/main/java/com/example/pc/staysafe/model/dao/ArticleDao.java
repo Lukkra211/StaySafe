@@ -1,9 +1,9 @@
-package com.example.pc.staysafe.model.dao;
+package com.example.pc.staysafe.Model.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 
-import com.example.pc.staysafe.model.entity.Article;
+import com.example.pc.staysafe.Model.entity.Article;
 
 /**
  * Object defining operations over the database

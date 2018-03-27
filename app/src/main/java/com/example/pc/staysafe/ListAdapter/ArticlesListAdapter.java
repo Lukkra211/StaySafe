@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.pc.staysafe.Model.Objects.Article;
+import com.example.pc.staysafe.Model.entity.Article;
 import com.example.pc.staysafe.R;
 
 import java.util.ArrayList;
@@ -31,18 +31,17 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
         Article art = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.test_article_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_test_article, parent, false);
         }
 
         TextView titleText = (TextView) convertView.findViewById(R.id.mainTitle);
         TextView timeToReadText = (TextView) convertView.findViewById(R.id.timeToRead);
+        TextView questionCount = (TextView) convertView.findViewById(R.id.questionCount);
 
-        if (art.getTitle() != null) {
-            titleText.setText("Nazev testu " + art.getTitle());
-        }
-
-        if (Integer.toString(art.getTimeToRead()) != null) {
-            timeToReadText.setText("Tvůj čas pro čtení je: " + Integer.toString(art.getTimeToRead()));
+        if (art != null) {
+            titleText.setText("Nazev testu: " + art.title);
+            timeToReadText.setText("Tvůj čas pro čtení je: " + Integer.toString(art.minutes));
+            questionCount.setText("Počet stránek je: " + Integer.toString(art.pages));
         }
 
         return convertView;

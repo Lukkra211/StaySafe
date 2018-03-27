@@ -4,9 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.pc.staysafe.model.database.ArticleDatabase;
-import com.example.pc.staysafe.model.entity.Article;
-import com.example.pc.staysafe.model.entity.Page;
+import com.example.pc.staysafe.Model.database.ArticleDatabase;
+import com.example.pc.staysafe.Model.entity.Article;
+import com.example.pc.staysafe.Model.entity.Page;
 
 
 /**

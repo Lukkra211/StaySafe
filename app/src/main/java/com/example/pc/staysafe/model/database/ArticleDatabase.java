@@ -1,4 +1,4 @@
-package com.example.pc.staysafe.model.database;
+package com.example.pc.staysafe.Model.database;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -8,12 +8,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.pc.staysafe.model.dao.ArticleDao;
-import com.example.pc.staysafe.model.dao.PageDao;
-import com.example.pc.staysafe.model.entity.Answer;
-import com.example.pc.staysafe.model.entity.Article;
-import com.example.pc.staysafe.model.entity.Page;
-import com.example.pc.staysafe.model.entity.Question;
+import com.example.pc.staysafe.Model.dao.ArticleDao;
+import com.example.pc.staysafe.Model.dao.PageDao;
+import com.example.pc.staysafe.Model.entity.Answer;
+import com.example.pc.staysafe.Model.entity.Article;
+import com.example.pc.staysafe.Model.entity.Page;
+import com.example.pc.staysafe.Model.entity.Question;
 
 /**
  * Object representing database with DAOs. Act as singleton.

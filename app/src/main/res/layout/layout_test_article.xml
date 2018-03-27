@@ -7,19 +7,16 @@
         android:id="@+id/mainTitle"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:text=""/>
+        android:layout_weight="2"/>
     <TextView
         android:id="@+id/timeToRead"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:text=""/>
+        android:layout_weight="2"/>
     <TextView
-        android:id="@+id/subArticles"
+        android:id="@+id/questionCount"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:text=""/>
+        android:layout_weight="2"/>
 
 </LinearLayout>
