@@ -3,6 +3,28 @@
     android:id="@+id/activity_internet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="10"
     android:orientation="vertical">
-
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:textAlignment="center"
+        android:background="#360a64"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50sp"
+        android:text="@string/dangerATitle"/>
+    <ListView
+        android:id="@+id/TestArticlesContainer"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="7"/>
+    <ImageButton
+        android:id="@+id/dangerAReturnB"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/return_image"
+        />
 </LinearLayout>
