@@ -2,6 +2,8 @@
     <string name="home_btn_virtual" translatable="false">Virtual danger</string>
     <string name="home_btn_real" translatable="false">Real danger</string>
 
+    <string name="danger_listView_additionalInfo">Minutes to read the article: %d</string>
+
     <string name="notify_Title" translatable="false">Question?</string>
     <string name="True" translatable="false">Yes</string>
     <string name="False" translatable="false">No</string>
@@ -26,4 +28,5 @@
 
     <string name="dangerATitle" translatable="true">Testy</string>
     <string name="returnButton" translatable="true">ZPĚT</string>
+
 </resources>

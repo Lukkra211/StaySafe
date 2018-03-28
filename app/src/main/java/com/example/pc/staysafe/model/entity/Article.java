@@ -16,6 +16,27 @@ public class Article {
     public int articleId;
     public int minutes;
     public int pages;
-    public int difficulty;
     public String title;
+    public int difficulty;
+
+    public Difficulty getDifficulty() {
+        return Difficulty.fromInt(difficulty);
+    }
+
+    public enum Difficulty {
+        ELEMENTARY, INTERMEDIATE, ADVANCED, UNKNOWN;
+
+        protected static Difficulty fromInt(int difficulty) {
+            switch (difficulty) {
+                case 1:
+                    return ELEMENTARY;
+                case 2:
+                    return INTERMEDIATE;
+                case 3:
+                    return ADVANCED;
+                default:
+                    return UNKNOWN;
+            }
+        }
+    }
 }

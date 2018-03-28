@@ -1,7 +1,6 @@
 package com.example.pc.staysafe;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -49,14 +48,6 @@ public class DangerActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
         //Make Item in listview clickable and change title of page when cliked
         testArticles.setOnItemClickListener (new AdapterView.OnItemClickListener() {
             @Override

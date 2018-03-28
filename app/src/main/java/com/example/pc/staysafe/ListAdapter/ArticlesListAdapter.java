@@ -1,6 +1,7 @@
 package com.example.pc.staysafe.ListAdapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,24 +23,41 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View view, ViewGroup parent) {
+        Article article = getItem(position);
 
-        Article art = getItem(position);
-
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_test_article, parent, false);
+        if (view == null) {
+            view = LayoutInflater.from(getContext()).inflate(
+                    R.layout.danger_listview_row,
+                    parent,
+                    false);
         }
 
-        TextView titleText = (TextView) convertView.findViewById(R.id.mainTitle);
-        TextView timeToReadText = (TextView) convertView.findViewById(R.id.timeToRead);
-        TextView questionCount = (TextView) convertView.findViewById(R.id.questionCount);
+        View difficulty = view.findViewById(R.id.listView_row_difficulty);
+        TextView title = view.findViewById(R.id.listView_row_title);
+        TextView timeToRead = view.findViewById(R.id.listView_row_additionalInfo);
 
-        if (art != null) {
-            titleText.setText("Nazev testu: " + art.title);
-            timeToReadText.setText("Tvůj čas pro čtení je: " + Integer.toString(art.minutes));
-            questionCount.setText("Počet stránek je: " + Integer.toString(art.pages));
+        if (article != null) {
+            title.setText(article.title);
+            timeToRead.setText(getContext().getString(R.string.danger_listView_additionalInfo,
+                                                      article.minutes));
+            int color;
+            switch (article.getDifficulty()) {
+                case ELEMENTARY:
+                    color = ContextCompat.getColor(getContext(), R.color.levelElementary);
+                    break;
+                case INTERMEDIATE:
+                    color = ContextCompat.getColor(getContext(), R.color.levelIntermediate);
+                    break;
+                case ADVANCED:
+                    color = ContextCompat.getColor(getContext(), R.color.levelAdvanced);
+                    break;
+                default:
+                    color = ContextCompat.getColor(getContext(), R.color.levelAdvanced);
+            }
+            difficulty.setBackgroundColor(color);
         }
 
-        return convertView;
+        return view;
     }
 }

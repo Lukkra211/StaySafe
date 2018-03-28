@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Color per article level -->
+    <color name="levelElementary">#4caf50</color>
+    <color name="levelIntermediate">#f57f17</color>
+    <color name="levelAdvanced">#c62828</color>
+    <color name="levelUnknown">#c62828</color>
+
 </resources>
