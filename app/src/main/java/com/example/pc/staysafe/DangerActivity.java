@@ -40,7 +40,6 @@ public class DangerActivity extends AppCompatActivity {
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_layout);
         testArticles = findViewById(R.id.TestArticlesContainer);
-        returnButton = findViewById(R.id.dangerAReturnB);
         this.articleDatabase = ArticleDatabase.getDatabase(this);
 
         ArrayList<Article> arts = new ArrayList<>();
