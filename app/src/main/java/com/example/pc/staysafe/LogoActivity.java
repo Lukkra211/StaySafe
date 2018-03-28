@@ -11,6 +11,8 @@ import android.widget.ImageView;
  * Shows the logo and Erasmus banner before application really starts
  *
  * Here some time-consuming structures can be loaded or initialized
+ * Autor: Jan Rodak
+ * #HonyJeBuh
  */
 public class LogoActivity extends Activity {
 
