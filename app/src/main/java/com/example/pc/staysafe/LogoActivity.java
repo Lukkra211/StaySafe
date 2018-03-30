@@ -33,6 +33,7 @@ public class LogoActivity extends Activity {
         img_logo.startAnimation(anim_welcome);*/
 
        setAnimations();
+       inItParms();
 
 
         new Handler().postDelayed(TimeHandler, DELAY);
@@ -57,6 +58,9 @@ public class LogoActivity extends Activity {
     /**
      * Initialize animations and link them to the xml objects
      */
+    private void inItParms(){
+        //this.intent = new Intent(this, OverviewActivity.class);
+    }
     private void setAnimations() {
         this.fadeIn.setInterpolator(new DecelerateInterpolator());
         fadeIn.setDuration(DELAY / 2);
