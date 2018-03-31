@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
 
 /**
  * Shows the logo and Erasmus banner before application really starts
