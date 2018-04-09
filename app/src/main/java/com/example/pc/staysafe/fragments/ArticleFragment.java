@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.pc.staysafe.R;
 
+//Fragmet to show text from pages
 public class ArticleFragment extends Fragment {
     public static String SUBTEXTKEY_VALUE = "subtext";
     public static String TEXTKEY_VALUE = "text";
@@ -17,18 +18,22 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_article, container, false);
         Bundle bundle = getArguments();
+
+        //Gets values from bundle passed from main activity
         String subtitle = bundle.getString(SUBTEXTKEY_VALUE);
         String text = bundle.getString(TEXTKEY_VALUE);
 
+        //Gets textview
         TextView subtitleView = view.findViewById(R.id.subtitleView);
         TextView textView =  view.findViewById(R.id.textView);
 
+        //Set text in xml
         subtitleView.setText(subtitle);
         textView.setText(Html.fromHtml(text));
-        // Inflate the layout for this fragment
-        return view;
 
+        return view;
     }
 }

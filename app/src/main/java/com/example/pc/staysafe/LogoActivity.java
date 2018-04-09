@@ -60,6 +60,6 @@ public class LogoActivity extends Activity {
     };
 
     private void inItParms(){
-        this.intent = new Intent(this, ArticleActivity.class);
+        this.intent = new Intent(this, HomeActivity.class);
     }
 }

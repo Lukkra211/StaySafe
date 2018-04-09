@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
-
+//Adapter for switching betweem fragments into ArticleActivity
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
     private int NUM_FRAGMENT;

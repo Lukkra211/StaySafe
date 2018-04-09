@@ -1,5 +1,6 @@
 package com.example.pc.staysafe;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,7 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.pc.staysafe.ListAdapter.ArticlesListAdapter;
+import com.example.pc.staysafe.adapters.ArticlesListAdapter;
 import com.example.pc.staysafe.dialog.ArticleInfoDialog;
 import com.example.pc.staysafe.model.database.ArticleDatabase;
 import com.example.pc.staysafe.model.entity.Article;
@@ -19,6 +20,9 @@ import java.util.Arrays;
  * Shows all articles on given danger type
  */
 public class DangerActivity extends AppCompatActivity {
+
+    private Article currentArticle;
+
     private ArticleInfoDialog articleDialog;
     private ArticleDatabase articleDatabase;
 
@@ -56,8 +60,8 @@ public class DangerActivity extends AppCompatActivity {
      * @param position row's index in ListView
      */
     private void showInfoDialog (AdapterView<?> parent, int position) {
-        Article article = (Article) parent.getItemAtPosition(position);
-        articleDialog.show(article);
+        currentArticle = (Article) parent.getItemAtPosition(position);
+        articleDialog.show(currentArticle);
     }
 
     /**
@@ -78,7 +82,9 @@ public class DangerActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.dialog_articleInfo_read:
-                    Log.w("AAA", "Ahoj");
+                    Intent i = new Intent(getBaseContext(), ArticleActivity.class);
+                    i.putExtra(ArticleActivity.ARTICLE_ID_KEY, currentArticle.articleId);
+                    startActivity(i);
                     break;
 
                 case R.id.dialog_articleInfo_test:
