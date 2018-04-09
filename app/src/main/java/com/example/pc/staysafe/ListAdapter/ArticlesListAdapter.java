@@ -41,21 +41,7 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
             title.setText(article.title);
             timeToRead.setText(getContext().getString(R.string.danger_listView_additionalInfo,
                                                       article.minutes));
-            int color;
-            switch (article.getDifficulty()) {
-                case ELEMENTARY:
-                    color = ContextCompat.getColor(getContext(), R.color.levelElementary);
-                    break;
-                case INTERMEDIATE:
-                    color = ContextCompat.getColor(getContext(), R.color.levelIntermediate);
-                    break;
-                case ADVANCED:
-                    color = ContextCompat.getColor(getContext(), R.color.levelAdvanced);
-                    break;
-                default:
-                    color = ContextCompat.getColor(getContext(), R.color.levelAdvanced);
-            }
-            difficulty.setBackgroundColor(color);
+            difficulty.setBackgroundColor(article.getColor(getContext()));
         }
 
         return view;

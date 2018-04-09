@@ -5,9 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- Color per article level -->
-    <color name="levelElementary">#4c82af</color>
-    <color name="levelIntermediate">#f57f17</color>
-    <color name="levelAdvanced">#c62828</color>
+    <color name="levelElementary">#01579b</color>
+    <color name="levelIntermediate">#afb42b</color>
+    <color name="levelAdvanced">#bf360c</color>
     <color name="levelUnknown">#c62828</color>
 
 </resources>

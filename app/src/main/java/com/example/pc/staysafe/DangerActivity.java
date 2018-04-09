@@ -1,15 +1,14 @@
 package com.example.pc.staysafe;
 
-import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.pc.staysafe.ListAdapter.ArticlesListAdapter;
+import com.example.pc.staysafe.dialog.ArticleInfoDialog;
 import com.example.pc.staysafe.model.database.ArticleDatabase;
 import com.example.pc.staysafe.model.entity.Article;
 
@@ -20,11 +19,10 @@ import java.util.Arrays;
  * Shows all articles on given danger type
  */
 public class DangerActivity extends AppCompatActivity {
-
+    private ArticleInfoDialog articleDialog;
     private ArticleDatabase articleDatabase;
-    private ImageButton returnButton;
+
     private ListView testArticles;
-    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,41 +34,57 @@ public class DangerActivity extends AppCompatActivity {
     }
 
     private void initParams() {
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_layout);
-        testArticles = findViewById(R.id.TestArticlesContainer);
-        this.articleDatabase = ArticleDatabase.getDatabase(this);
+        articleDialog = new ArticleInfoDialog(this, buttonListener);
+        articleDatabase = ArticleDatabase.getDatabase(this);
 
-        ArrayList<Article> arts = new ArrayList<>();
-        arts.addAll(Arrays.asList(articleDatabase.articleDao().fetchArticles()));
-        ArticlesListAdapter testArticlesAdapter = new ArticlesListAdapter(this, arts);
-        testArticles.setAdapter(testArticlesAdapter);
+        testArticles = findViewById(R.id.TestArticlesContainer);
     }
 
     private void initUI() {
-        //Make Item in listview clickable and change title of page when cliked
-        testArticles.setOnItemClickListener (new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-                setDialog(parent, position);
-            }
-        });
+        ArrayList<Article> arts = new ArrayList<>();
+        arts.addAll(Arrays.asList(articleDatabase.articleDao().fetchArticles()));
+        ArticlesListAdapter testArticlesAdapter = new ArticlesListAdapter(this, arts);
+        testArticles.setOnItemClickListener(listViewListener);
+        testArticles.setAdapter(testArticlesAdapter);
     }
-    private void setDialog (AdapterView<?> parent, int position) {
+
+    /**
+     * Show dialog displaying some information about clicked article;
+     *
+     * Is trigger automatically when item in ListView is clicked.
+     * @param parent ListView object
+     * @param position row's index in ListView
+     */
+    private void showInfoDialog (AdapterView<?> parent, int position) {
         Article article = (Article) parent.getItemAtPosition(position);
-        dialog.setTitle(String.valueOf(article.articleId));
-        ImageButton endDialog = dialog.findViewById(R.id.endDialogButton);
-        TextView dialogTitle = dialog.findViewById(R.id.dialogTitle);
-        TextView dialogText = dialog.findViewById(R.id.dialogText);
-
-        endDialog.setOnClickListener (new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
-        dialogTitle.setText(article.title);
-        dialog.show();
+        articleDialog.show(article);
     }
 
+    /**
+     * Custom listener used when item in ListView is clicked
+     */
+    private AdapterView.OnItemClickListener listViewListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            showInfoDialog(parent, position);
+        }
+    };
+
+    /**
+     * Custom listener passed to dialog manager, listens to the dialog's buttons
+     */
+    private View.OnClickListener buttonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.dialog_articleInfo_read:
+                    Log.w("AAA", "Ahoj");
+                    break;
+
+                case R.id.dialog_articleInfo_test:
+                    Log.w("AAA", "Druha");
+                    break;
+            }
+        }
+    };
 }
