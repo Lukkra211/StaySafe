@@ -2,6 +2,16 @@
     <string name="home_btn_virtual" translatable="false">Virtual danger</string>
     <string name="home_btn_real" translatable="false">Real danger</string>
 
+    <string name="danger_listView_additionalInfo">Minutes to read the article: %d</string>
+
+    <string name="dialog_article_info_minutes_question">Estimated reading time:</string>
+    <string name="dialog_article_info_minutes_answear">%d minutes</string>
+    <string name="dialog_article_info_pages_question">You have read:</string>
+    <string name="dialog_article_info_pages_answear">%d out of %d pages</string>
+    <string name="dialog_article_info_difficulty_question">The article's difficulty is:</string>
+    <string name="dialog_article_info_difficulty_answear">%s</string>
+    <string name="dialog_article_info_percent">%d</string>
+
     <string name="notify_Title" translatable="false">Question?</string>
     <string name="True" translatable="false">Yes</string>
     <string name="False" translatable="false">No</string>
@@ -23,7 +33,6 @@
     <string name="email" translatable="false">Email</string>
     <string name="back" translatable="false">back</string>
     <string name="login1" translatable="false">Login</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
