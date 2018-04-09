@@ -2,6 +2,7 @@ package com.example.pc.staysafe.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class ArticleFragment extends Fragment {
         TextView textView =  view.findViewById(R.id.textView);
 
         subtitleView.setText(subtitle);
-        textView.setText(text);
+        textView.setText(Html.fromHtml(text));
         // Inflate the layout for this fragment
         return view;
 

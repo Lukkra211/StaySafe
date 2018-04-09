@@ -12,7 +12,7 @@ public class FakeModel {
         for (int i = 0; i < pageCount; i++){
             FakePage onePage = new FakePage();
             onePage.subtitle = "Trolololo";
-            onePage.text = "jkgafslnhbgfeshnjkagjafsdkjgvkjasnkfjgnkdjfngvkjsnkjfgkjhnkjdfnhilu";
+            onePage.text = "jkgafsln<br><h1>hbgfeshn</h1><br>jkagjafs<br>dkjgvkjasnkfjgnkdjfngvkjsnkjfgkjhnkjdfnhilu";
             fkpages.add(onePage);
         }
     }

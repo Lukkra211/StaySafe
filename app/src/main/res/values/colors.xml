@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#2e7d32</color>
+    <color name="colorPrimaryDark">#1b5e20</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Color per article level -->
+    <color name="levelElementary">#01579b</color>
+    <color name="levelIntermediate">#afb42b</color>
+    <color name="levelAdvanced">#bf360c</color>
+    <color name="levelUnknown">#c62828</color>
+
+    <color name="backgroundColor">#1b285e</color>>
 </resources>
