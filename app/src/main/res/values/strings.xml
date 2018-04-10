@@ -2,13 +2,22 @@
     <string name="home_btn_virtual" translatable="false">Virtual danger</string>
     <string name="home_btn_real" translatable="false">Real danger</string>
 
+    <string name="register_textView_header">Register</string>
+    <string name="register_editText_nick_hint">Type a nick</string>
+    <string name="register_editText_password_hint">Type a password</string>
+    <string name="register_editText_repeatPassword_hint">Repeat your password</string>
+
+    <string name="login_textView_header">Login</string>
+    <string name="login_editText_nick_hint">Type a nick</string>
+    <string name="login_editText_password_hint">Type a password</string>
+
     <string name="danger_listView_additionalInfo">Minutes to read the article: %d</string>
 
     <string name="dialog_article_info_minutes_question">Estimated reading time:</string>
     <string name="dialog_article_info_minutes_answear">%d minutes</string>
     <string name="dialog_article_info_pages_question">You have read:</string>
     <string name="dialog_article_info_pages_answear">%d out of %d pages</string>
-    <string name="dialog_article_info_difficulty_question">The article's difficulty is:</string>
+    <string name="dialog_article_info_difficulty_question">The article\'s difficulty is:</string>
     <string name="dialog_article_info_difficulty_answear">%s</string>
     <string name="dialog_article_info_percent">%d</string>
 

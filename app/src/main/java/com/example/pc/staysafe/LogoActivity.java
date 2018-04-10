@@ -32,9 +32,7 @@ public class LogoActivity extends Activity {
         setContentView(R.layout.activity_logo);
 
         setAnimations();
-        inItParms();
-
-        RemoteModel test = new RemoteModel(this);
+        initParams();
 
         new Handler().postDelayed(TimeHandler, DELAY);
     }
@@ -63,7 +61,7 @@ public class LogoActivity extends Activity {
         }
     };
 
-    private void inItParms(){
-        this.intent = new Intent(this, HomeActivity.class);
+    private void initParams() {
+        this.intent = new Intent(this, LoginActivity.class);
     }
 }
