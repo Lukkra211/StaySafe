@@ -1,8 +1,17 @@
 package com.example.pc.staysafe.model;
 
+import android.content.Context;
+
 import java.util.HashMap;
 
+/**
+ * Remote model using HTTP requests
+ */
 public class RemoteModel {
+
+    public RemoteModel(Context context) {
+    }
+
     public HashMap<String, Integer> getPointsHistory() {
         HashMap<String, Integer> map = new HashMap<>();
         map.put("Monday", 100);

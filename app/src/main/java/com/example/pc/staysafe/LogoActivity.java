@@ -8,6 +8,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 
+import com.example.pc.staysafe.model.RemoteModel;
+
 /**
  * Shows the logo and Erasmus banner before application really starts
  *
@@ -31,6 +33,8 @@ public class LogoActivity extends Activity {
 
         setAnimations();
         inItParms();
+
+        RemoteModel test = new RemoteModel(this);
 
         new Handler().postDelayed(TimeHandler, DELAY);
     }
