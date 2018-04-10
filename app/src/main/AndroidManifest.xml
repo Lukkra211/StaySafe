@@ -23,4 +23,7 @@
             android:theme="@style/FullscreenTheme1"/>
     </application>
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>
