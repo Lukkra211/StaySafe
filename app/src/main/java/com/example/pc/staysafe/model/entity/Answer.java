@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 /**
  * Answer to one {@link Question}
  */
-@Entity(tableName = "answear",
+@Entity(tableName = "answerTable",
         foreignKeys = @ForeignKey(entity = Question.class,
                                   parentColumns = "question_id",
                                   childColumns = "answer_id"))
@@ -22,4 +22,5 @@ public class Answer {
     public int questionId;
 
     public String answer;
+    public boolean correct;
 }

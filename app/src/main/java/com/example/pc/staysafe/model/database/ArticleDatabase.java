@@ -8,8 +8,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.pc.staysafe.model.dao.AnswerDao;
 import com.example.pc.staysafe.model.dao.ArticleDao;
 import com.example.pc.staysafe.model.dao.PageDao;
+import com.example.pc.staysafe.model.dao.QuestionDao;
 import com.example.pc.staysafe.model.entity.Answer;
 import com.example.pc.staysafe.model.entity.Article;
 import com.example.pc.staysafe.model.entity.Page;
@@ -25,6 +27,8 @@ public abstract class ArticleDatabase extends RoomDatabase {
     // Declare all DAOs
     public abstract ArticleDao articleDao();
     public abstract PageDao pageDao();
+    public abstract AnswerDao answerDao();
+    public abstract QuestionDao questionDao();
 
     public static ArticleDatabase getDatabase(Context context) {
         if (instance == null) {
@@ -52,13 +56,36 @@ public abstract class ArticleDatabase extends RoomDatabase {
                 values.put("pages", i / 3 + 2);
                 values.put("minutes", i + 10);
                 values.put("difficulty", i);
-                long id = db.insert("article", SQLiteDatabase.CONFLICT_FAIL, values);
+                long articleid = db.insert("article", SQLiteDatabase.CONFLICT_FAIL, values);
+
                 for (int x = 1; x <= i / 3 + 2; x++) {
                     ContentValues page = new ContentValues();
-                    page.put("article_id", id);
+                    page.put("article_id", articleid);
                     page.put("subtitle", "podtitulek_" + String.valueOf(i) + '_' + String.valueOf(x));
                     page.put("text", "Lorem ipsum amet.");
                     db.insert("page", SQLiteDatabase.CONFLICT_FAIL, page);
+                }
+
+                for(int z=0; z <= 4; z++) {
+                    ContentValues questions = new ContentValues();
+                    questions.put("article_id", articleid);
+                    questions.put("type", z);
+                    questions.put("question", "Ses pica?");
+                    long questionId = db.insert("questionsTable", SQLiteDatabase.CONFLICT_FAIL, questions);
+
+
+                    for (int l=0; l < 9; l++){
+                        ContentValues answers = new ContentValues();
+                        answers.put("question_id", questionId);
+                        answers.put("answer", "NePico");
+                        answers.put("correct", false);
+                        db.insert("answerTable", SQLiteDatabase.CONFLICT_FAIL, answers);
+                    }
+                    ContentValues answers = new ContentValues();
+                    answers.put("question_id", questionId);
+                    answers.put("answer", "Pico");
+                    answers.put("correct", true);
+                    db.insert("answerTable", SQLiteDatabase.CONFLICT_FAIL, answers);
                 }
             }
         }

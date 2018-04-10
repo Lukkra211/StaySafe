@@ -82,13 +82,15 @@ public class DangerActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.dialog_articleInfo_read:
-                    Intent i = new Intent(getBaseContext(), ArticleActivity.class);
-                    i.putExtra(ArticleActivity.ARTICLE_ID_KEY, currentArticle.articleId);
-                    startActivity(i);
+                    Intent aA  = new Intent(getBaseContext(), ArticleActivity.class);
+                    aA.putExtra(ArticleActivity.ARTICLE_ID_KEY, currentArticle.articleId);
+                    startActivity(aA);
                     break;
 
                 case R.id.dialog_articleInfo_test:
-                    Log.w("AAA", "Druha");
+                    Intent qA = new Intent(getBaseContext(), QuestionActivity.class);
+                    qA.putExtra(QuestionActivity.ARTICLE_ID_KEY, currentArticle.articleId);
+                    startActivity(qA);
                     break;
             }
         }
