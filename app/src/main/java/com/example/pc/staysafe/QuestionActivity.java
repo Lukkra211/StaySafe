@@ -1,17 +1,19 @@
 package com.example.pc.staysafe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.pc.staysafe.adapters.MyPagerAdapter;
 import com.example.pc.staysafe.adapters.NonSwipeableViewPager;
+import com.example.pc.staysafe.fragments.FinalPageFragment;
 import com.example.pc.staysafe.fragments.QuestionFragment;
 import com.example.pc.staysafe.model.database.ArticleDatabase;
-import com.example.pc.staysafe.model.entity.Answer;
 import com.example.pc.staysafe.model.entity.Question;
+import com.example.pc.staysafe.objects.Result;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,10 +26,12 @@ public class QuestionActivity extends AppCompatActivity {
     public static String TYPEKEY_VALUE = "type";
     public static String QUESTIONKEY_VALUE = "qustions";
 
+    private int MAX_FRAGMENTS;
     private int CURRENT_FRAGMENT;
-
     private NonSwipeableViewPager viewPager;
     private ArticleDatabase database;
+    private ArrayList<Fragment> qFragments;
+    private ArrayList<QuestionFragment> questionFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,31 +44,53 @@ public class QuestionActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         ArrayList<Question> questions = new ArrayList<>();
+        questionFragments = new ArrayList<>();
 
         if (bundle != null) {
             int id = bundle.getInt(ARTICLE_ID_KEY);
 
             questions.addAll(Arrays.asList(database.questionDao().getQuestions(id)));
-            ArrayList<Fragment> qFragments = new ArrayList<>();
+            qFragments = new ArrayList<>();
 
             //Creates all fragments
             for (Question q: questions) {
-                qFragments.add(createFragment(q));
+                QuestionFragment questionFragment = createFragment(q);
+                qFragments.add(questionFragment);
+                questionFragments.add(questionFragment);
             }
+            qFragments.add(new FinalPageFragment());
 
+            MAX_FRAGMENTS = qFragments.size();
             //Set swiping between screens
             MyPagerAdapter myPA = new MyPagerAdapter(this, qFragments);
             viewPager = findViewById(R.id.view_handler);
             viewPager.setAdapter(myPA);
         }
     }
+
     public void continueButton(View v){
         CURRENT_FRAGMENT += 1;
-        viewPager.setCurrentItem(CURRENT_FRAGMENT);
+        if(CURRENT_FRAGMENT < MAX_FRAGMENTS - 1) {
+            viewPager.setCurrentItem(CURRENT_FRAGMENT);
+        }else {
+            Button continueB = v.findViewById(R.id.continueButton);
+            continueB.setText("FINALIZE");
+            viewPager.setCurrentItem(MAX_FRAGMENTS);
+            FinalPageFragment finalFragment = (FinalPageFragment) qFragments.get(qFragments.size() - 1);
+                for (Result res : getResults()) {
+                    finalFragment.createResult(res);
+                }
+                finalFragment.createLayout();
+
+            if(CURRENT_FRAGMENT > MAX_FRAGMENTS){
+                Intent back = new Intent(getBaseContext(), DangerActivity.class);
+                startActivity(back);
+            }
+        }
     }
 
     //Create fragment, set its arguments and pass them
-    public Fragment createFragment(Question question){
+    public QuestionFragment createFragment(Question question){
         Bundle bundle = new Bundle();
         bundle.putInt(QUESTIONID_VALUE, question.questionId);
         bundle.putInt(TYPEKEY_VALUE, question.type);
@@ -74,8 +100,15 @@ public class QuestionActivity extends AppCompatActivity {
         return qFragment;
     }
 
-    public ArticleDatabase getDatabase(){
-        return database;
+    public ArrayList<Result> getResults(){
+        ArrayList<Result> results = new ArrayList<>();
+        for(QuestionFragment qFrag: questionFragments){
+            results.add(qFrag.getResult());
+        }
+        return results;
     }
 
+    public ArticleDatabase getDatabase(){
+        return  database;
+    }
 }

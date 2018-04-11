@@ -66,7 +66,7 @@ public abstract class ArticleDatabase extends RoomDatabase {
                     db.insert("page", SQLiteDatabase.CONFLICT_FAIL, page);
                 }
 
-                for(int z=0; z <= 4; z++) {
+                for(int z=1; z <= 4; z++) {
                     ContentValues questions = new ContentValues();
                     questions.put("article_id", articleid);
                     questions.put("type", z);
@@ -74,14 +74,19 @@ public abstract class ArticleDatabase extends RoomDatabase {
                     long questionId = db.insert("questionsTable", SQLiteDatabase.CONFLICT_FAIL, questions);
 
 
-                    for (int l=0; l < 9; l++){
                         ContentValues answers = new ContentValues();
                         answers.put("question_id", questionId);
-                        answers.put("answer", "NePico");
+                        answers.put("answer", "ANOPico");
                         answers.put("correct", false);
                         db.insert("answerTable", SQLiteDatabase.CONFLICT_FAIL, answers);
-                    }
-                    ContentValues answers = new ContentValues();
+
+                    ContentValues answers2 = new ContentValues();
+                    answers.put("question_id", questionId);
+                    answers.put("answer", "Kundo");
+                    answers.put("correct", false);
+                    db.insert("answerTable", SQLiteDatabase.CONFLICT_FAIL, answers);
+
+                    ContentValues answers3 = new ContentValues();
                     answers.put("question_id", questionId);
                     answers.put("answer", "Pico");
                     answers.put("correct", true);

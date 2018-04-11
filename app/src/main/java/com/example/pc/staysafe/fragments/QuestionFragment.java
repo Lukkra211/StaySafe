@@ -20,14 +20,22 @@ import com.example.pc.staysafe.QuestionActivity;
 import com.example.pc.staysafe.R;
 import com.example.pc.staysafe.model.entity.Answer;
 import com.example.pc.staysafe.model.entity.Question;
+import com.example.pc.staysafe.objects.Result;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class QuestionFragment extends Fragment{
+public class QuestionFragment extends Fragment {
 
     private LinearLayout answerLayout;
     private ArrayList<Answer> answers;
+    private String question;
+    private int type;
+
+    private EditText singleEntry;
+    private EditText numberEntry;
+    private RadioGroup multipleGroup;
+    private RadioGroup booleanGroup;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,14 +44,14 @@ public class QuestionFragment extends Fragment{
         Bundle bundle = getArguments();
 
         answerLayout = view.findViewById(R.id.answerLayout);
-        QuestionActivity activity = (QuestionActivity)getActivity();
-         answers = new ArrayList<>();
+        QuestionActivity activity = (QuestionActivity) getActivity();
+        answers = new ArrayList<>();
 
         //Gets values from bundle passed from main activity
         if (bundle != null) {
             int questionId = bundle.getInt(QuestionActivity.QUESTIONID_VALUE);
-            int type = bundle.getInt(QuestionActivity.TYPEKEY_VALUE);
-            String question = bundle.getString(QuestionActivity.QUESTIONKEY_VALUE);
+            type = bundle.getInt(QuestionActivity.TYPEKEY_VALUE);
+            question = bundle.getString(QuestionActivity.QUESTIONKEY_VALUE);
 
             answers.addAll(Arrays.asList(activity.getDatabase().answerDao().getAnswers(questionId)));
 
@@ -53,7 +61,7 @@ public class QuestionFragment extends Fragment{
             //Set text in xml
             title.setText(question);
 
-            setAnswerLayout(type);
+            setAnswerLayout();
         }
 
         return view;
@@ -61,8 +69,8 @@ public class QuestionFragment extends Fragment{
 
 
     //Set answer type
-    private void setAnswerLayout(int type){
-        switch (Question.Type.fromInt(type)){
+    private void setAnswerLayout() {
+        switch (Question.Type.fromInt(type)) {
             case SINGLE_ANSWEAR:
                 createSingleAnswer();
                 break;
@@ -73,60 +81,89 @@ public class QuestionFragment extends Fragment{
                 createNumberAnswer();
                 break;
             case TRUE_FALSE:
-                createBoleanAnswer();
-                break;
-            default:
-                createErrorAnswer();
+                createBooleanAnswer();
                 break;
         }
     }
 
     //Create SingleAnswer
-    private void createSingleAnswer(){
-        EditText entry = new EditText(getContext());
-        entry.setHint("Enter answer");
-        answerLayout.addView(entry);
+    private void createSingleAnswer() {
+        singleEntry = new EditText(getContext());
+        singleEntry.setHint("Enter answer");
+        answerLayout.addView(singleEntry);
     }
 
     //Create MultipleAnswer
-    private void createMultipleAnswer(){
-        RadioGroup radGroup = new RadioGroup(getContext());
-        for(Answer answer:answers){
+    private void createMultipleAnswer() {
+        multipleGroup = new RadioGroup(getContext());
+
+        for (Answer answer : answers) {
             RadioButton radButton = new RadioButton(getContext());
             radButton.setText(answer.answer);
-            radGroup.addView(radButton);
+            multipleGroup.addView(radButton);
         }
-        answerLayout.addView(radGroup);
+        answerLayout.addView(multipleGroup);
     }
+
     //Create NumberAnswer
-    private void createNumberAnswer(){
-        EditText entry = new EditText(getContext());
-        entry.setHint("Enter number");
-        entry.setInputType(InputType.TYPE_CLASS_NUMBER);
-        answerLayout.addView(entry);
+    private void createNumberAnswer() {
+        numberEntry = new EditText(getContext());
+        numberEntry.setHint("Enter number");
+        numberEntry.setInputType(InputType.TYPE_CLASS_NUMBER);
+        answerLayout.addView(numberEntry);
     }
 
     //Create BoleanAnswer
-    private void createBoleanAnswer(){
-        RadioGroup radGroup = new RadioGroup(getContext());
-        radGroup.setOrientation(LinearLayout.HORIZONTAL);
+    private void createBooleanAnswer() {
+        booleanGroup = new RadioGroup(getContext());
+        booleanGroup.setOrientation(LinearLayout.HORIZONTAL);
 
         RadioButton trueButton = new RadioButton(getContext());
         trueButton.setText("Yes");
-        radGroup.addView(trueButton);
+        booleanGroup.addView(trueButton);
 
         RadioButton falseButton = new RadioButton(getContext());
         falseButton.setText("No");
-        radGroup.addView(falseButton);
+        booleanGroup.addView(falseButton);
 
-        answerLayout.addView(radGroup);
+        answerLayout.addView(booleanGroup);
     }
 
-    //Creates Error when no answer type is given
-    public void createErrorAnswer(){
-        TextView error = new TextView(getContext());
-        error.setText("ERROR ANSWER NOT FOUND");
-        answerLayout.addView(error);
-        Log.e("Answer", "No type of answer was given");
+    private String getUserAnswer() {
+        String userAnswer = "";
+        switch (Question.Type.fromInt(type)) {
+            case SINGLE_ANSWEAR:
+                userAnswer = singleEntry.getText().toString();
+                break;
+
+            case MULTIPLE_ANSWEAR:
+                if (multipleGroup.getCheckedRadioButtonId() != -1) {
+                    int id = multipleGroup.getCheckedRadioButtonId();
+                    View radioButton = multipleGroup.findViewById(id);
+                    int radioId = multipleGroup.indexOfChild(radioButton);
+                    RadioButton btn = (RadioButton) multipleGroup.getChildAt(radioId);
+                    userAnswer = (String) btn.getText();
+                }
+                break;
+
+            case NUMBER:
+                userAnswer = String.valueOf(numberEntry.getText().toString());
+                break;
+
+            case TRUE_FALSE:
+                if (booleanGroup.getCheckedRadioButtonId() != -1) {
+                    int id = booleanGroup.getCheckedRadioButtonId();
+                    View radioButton = booleanGroup.findViewById(id);
+                    int radioId = booleanGroup.indexOfChild(radioButton);
+                    RadioButton btn = (RadioButton) booleanGroup.getChildAt(radioId);
+                    userAnswer = (String) btn.getText();
+                }
+                break;
+        }
+        return userAnswer;
+    }
+
+    public Result getResult() {
+        return new Result(question, this.answers, getUserAnswer(), type);
     }
 }
