@@ -158,7 +158,7 @@ public class AccountActivity extends AppCompatActivity {
         if (RemoteModel.getUser() != null) {
             Toast.makeText(this, "Wrong Password", Toast.LENGTH_SHORT).show();
         } else {
-            startActivity(new Intent(this, DangerActivity.class));
+            startActivity(new Intent(this, HomeActivity.class));
             overridePendingTransition(R.anim.fade_in, R.anim.do_nothing);
             finish();
         }

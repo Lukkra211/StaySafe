@@ -24,8 +24,6 @@ public class ArticleActivity extends AppCompatActivity {
     public static String SUBTEXTKEY_VALUE = "subtext";
     public static String TEXTKEY_VALUE = "text";
 
-    private ArrayList<Page> pages;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +33,7 @@ public class ArticleActivity extends AppCompatActivity {
         ArticleDatabase database = ArticleDatabase.getDatabase(this);
         Bundle bundle = getIntent().getExtras();
 
-        pages = new ArrayList<>();
+        ArrayList<Page> pages = new ArrayList<>();
 
         if (bundle != null) {
             int id = bundle.getInt(ARTICLE_ID_KEY);

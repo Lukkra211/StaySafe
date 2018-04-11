@@ -2,7 +2,12 @@ package com.example.pc.staysafe.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ViewGroup;
+
+import com.example.pc.staysafe.R;
+
 import java.util.ArrayList;
 //Adapter for switching betweem fragments into ArticleActivity
 public class MyPagerAdapter extends FragmentPagerAdapter {

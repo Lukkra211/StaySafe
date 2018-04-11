@@ -24,9 +24,11 @@
         <activity
             android:name=".ArticleActivity"
             android:theme="@style/FullscreenTheme1" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
         <activity android:name=".AccountActivity"></activity>
+        <activity
+            android:name=".QuestionActivity"
+            android:theme="@style/FullscreenTheme1"
+            />
     </application>
 
 </manifest>
