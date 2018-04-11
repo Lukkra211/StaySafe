@@ -16,6 +16,6 @@ public interface QuestionDao {
      * @param article_id id of the article
      * @return Array of pages
      */
-    @Query("SELECT * FROM questionsTable WHERE article_id == :article_id")
+    @Query("SELECT * FROM question WHERE article_id == :article_id")
     Question[] getQuestions(int article_id);
 }

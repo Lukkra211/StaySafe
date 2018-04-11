@@ -26,16 +26,17 @@ public abstract class ArticleDatabase extends RoomDatabase {
 
     // Declare all DAOs
     public abstract ArticleDao articleDao();
+
     public abstract PageDao pageDao();
+
     public abstract AnswerDao answerDao();
+
     public abstract QuestionDao questionDao();
 
     public static ArticleDatabase getDatabase(Context context) {
         if (instance == null) {
             instance = Room.inMemoryDatabaseBuilder(context, ArticleDatabase.class)//, "article-db")
-                    .allowMainThreadQueries()
-                    .addCallback(DB_CALLBACK)
-                    .build();
+                    .allowMainThreadQueries().addCallback(DB_CALLBACK).build();
         }
         return instance;
     }
@@ -46,7 +47,7 @@ public abstract class ArticleDatabase extends RoomDatabase {
      */
 
     static final RoomDatabase.Callback DB_CALLBACK = new RoomDatabase.Callback() {
-        public void onCreate (SupportSQLiteDatabase db) {
+        public void onCreate(SupportSQLiteDatabase db) {
             /* Here is insertion of initial data. Insertion take place at first run of the app.
              * For now, only testing data are inserted. No real one.
              */
@@ -66,32 +67,65 @@ public abstract class ArticleDatabase extends RoomDatabase {
                     db.insert("page", SQLiteDatabase.CONFLICT_FAIL, page);
                 }
 
-                for(int z=1; z <= 4; z++) {
-                    ContentValues questions = new ContentValues();
-                    questions.put("article_id", articleid);
-                    questions.put("type", z);
-                    questions.put("question", "Ses pica?");
-                    long questionId = db.insert("questionsTable", SQLiteDatabase.CONFLICT_FAIL, questions);
+                ContentValues questions = new ContentValues();
+                questions.put("article_id", articleid);
+                questions.put("type", 1);
+                questions.put("question", "Co je Pica?");
+                long question1Id = db.insert("question", SQLiteDatabase.CONFLICT_FAIL, questions);
+                ContentValues answers = new ContentValues();
+                answers.put("question_id", question1Id);
+                answers.put("answer", "Tvoje mama");
+                answers.put("correct", true);
+                db.insert("answer", SQLiteDatabase.CONFLICT_FAIL, answers);
 
 
-                        ContentValues answers = new ContentValues();
-                        answers.put("question_id", questionId);
-                        answers.put("answer", "ANOPico");
-                        answers.put("correct", false);
-                        db.insert("answerTable", SQLiteDatabase.CONFLICT_FAIL, answers);
+                ContentValues questions1 = new ContentValues();
+                questions1.put("article_id", articleid);
+                questions1.put("type", 2);
+                questions1.put("question", "Mrdas s tvoji mamou?");
+                long question1Id2 = db.insert("question", SQLiteDatabase.CONFLICT_FAIL, questions1);
+                ContentValues answers1 = new ContentValues();
+                answers1.put("question_id", question1Id2);
+                answers1.put("answer", "Ne ty");
+                answers1.put("correct", false);
+                db.insert("answer", SQLiteDatabase.CONFLICT_FAIL, answers1);
+                ContentValues answers2 = new ContentValues();
+                answers2.put("question_id", question1Id2);
+                answers2.put("answer", "Samozrejme");
+                answers2.put("correct", true);
+                db.insert("answer", SQLiteDatabase.CONFLICT_FAIL, answers2);
+                ContentValues answers3 = new ContentValues();
+                answers3.put("question_id", question1Id2);
+                answers3.put("answer", "Di do prdele");
+                answers3.put("correct", false);
+                db.insert("answer", SQLiteDatabase.CONFLICT_FAIL, answers3);
 
-                    ContentValues answers2 = new ContentValues();
-                    answers.put("question_id", questionId);
-                    answers.put("answer", "Kundo");
-                    answers.put("correct", false);
-                    db.insert("answerTable", SQLiteDatabase.CONFLICT_FAIL, answers);
+                ContentValues questions2 = new ContentValues();
+                questions2.put("article_id", articleid);
+                questions2.put("type", 3);
+                questions2.put("question", "Tvoje neoblibenejsi cislo");
+                long question2Id = db.insert("question", SQLiteDatabase.CONFLICT_FAIL, questions2);
+                ContentValues answers4 = new ContentValues();
+                answers4.put("question_id", question2Id);
+                answers4.put("answer", 69);
+                answers4.put("correct", true);
+                db.insert("answer", SQLiteDatabase.CONFLICT_FAIL, answers4);
 
-                    ContentValues answers3 = new ContentValues();
-                    answers.put("question_id", questionId);
-                    answers.put("answer", "Pico");
-                    answers.put("correct", true);
-                    db.insert("answerTable", SQLiteDatabase.CONFLICT_FAIL, answers);
-                }
+                ContentValues questions3 = new ContentValues();
+                questions3.put("article_id", articleid);
+                questions3.put("type", 3);
+                questions3.put("question", "Jebes tvoji mamu?");
+                long question3Id = db.insert("question", SQLiteDatabase.CONFLICT_FAIL, questions3);
+                ContentValues answers5 = new ContentValues();
+                answers5.put("question_id", question3Id);
+                answers5.put("answer", "Yes");
+                answers5.put("correct", true);
+                db.insert("answer", SQLiteDatabase.CONFLICT_FAIL, answers5);
+                ContentValues answers6 = new ContentValues();
+                answers6.put("question_id", question3Id);
+                answers6.put("answer", "No");
+                answers6.put("correct", false);
+                db.insert("answer", SQLiteDatabase.CONFLICT_FAIL, answers6);
             }
         }
     };

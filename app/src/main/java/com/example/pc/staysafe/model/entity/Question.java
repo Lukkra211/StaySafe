@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 /**
  * Question on one {@link Article}
  */
-@Entity(tableName = "questionsTable", foreignKeys = @ForeignKey(
+@Entity(tableName = "question", foreignKeys = @ForeignKey(
         entity = Article.class,
         parentColumns = "article_id",
         childColumns = "question_id"))

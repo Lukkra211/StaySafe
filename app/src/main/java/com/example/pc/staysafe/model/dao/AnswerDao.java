@@ -21,6 +21,6 @@ public interface AnswerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAnswer(Answer... answer);
 
-    @Query("SELECT * FROM answerTable WHERE question_id == :question_id")
+    @Query("SELECT * FROM answer WHERE question_id == :question_id")
     Answer[] getAnswers(int question_id);
 }

@@ -26,8 +26,12 @@ public class QuestionActivity extends AppCompatActivity {
     public static String TYPEKEY_VALUE = "type";
     public static String QUESTIONKEY_VALUE = "qustions";
 
+    public static String ARTICLEIDKEY_VALUE = "articleID";
+
     private int MAX_FRAGMENTS;
     private int CURRENT_FRAGMENT;
+
+    private int articleID;
     private NonSwipeableViewPager viewPager;
     private ArticleDatabase database;
     private ArrayList<Fragment> qFragments;
@@ -47,9 +51,9 @@ public class QuestionActivity extends AppCompatActivity {
         questionFragments = new ArrayList<>();
 
         if (bundle != null) {
-            int id = bundle.getInt(ARTICLE_ID_KEY);
+            articleID = bundle.getInt(ARTICLE_ID_KEY);
 
-            questions.addAll(Arrays.asList(database.questionDao().getQuestions(id)));
+            questions.addAll(Arrays.asList(database.questionDao().getQuestions(articleID)));
             qFragments = new ArrayList<>();
 
             //Creates all fragments
@@ -95,6 +99,7 @@ public class QuestionActivity extends AppCompatActivity {
         bundle.putInt(QUESTIONID_VALUE, question.questionId);
         bundle.putInt(TYPEKEY_VALUE, question.type);
         bundle.putString(QUESTIONKEY_VALUE, question.question);
+        bundle.putInt(ARTICLE_ID_KEY, articleID);
         QuestionFragment qFragment = new QuestionFragment();
         qFragment.setArguments(bundle);
         return qFragment;
