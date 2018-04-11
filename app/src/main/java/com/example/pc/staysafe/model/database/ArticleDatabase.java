@@ -113,7 +113,7 @@ public abstract class ArticleDatabase extends RoomDatabase {
 
                 ContentValues questions3 = new ContentValues();
                 questions3.put("article_id", articleid);
-                questions3.put("type", 3);
+                questions3.put("type", 4);
                 questions3.put("question", "Jebes tvoji mamu?");
                 long question3Id = db.insert("question", SQLiteDatabase.CONFLICT_FAIL, questions3);
                 ContentValues answers5 = new ContentValues();

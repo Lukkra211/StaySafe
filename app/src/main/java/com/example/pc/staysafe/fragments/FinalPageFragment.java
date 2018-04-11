@@ -54,7 +54,7 @@ public class FinalPageFragment extends Fragment {
         TextView question = new TextView(getContext());
         question.setLayoutParams(new TableRow.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
         question.setText(res.question);
-        question.setTextSize(20);
+        question.setTextSize(15);
         question.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         linearLayout.addView(question);
 
@@ -78,18 +78,20 @@ public class FinalPageFragment extends Fragment {
     //Create SingleAnswer
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void checkSingleAnswer(ArrayList<Answer> answers, String userAnswer) {
-        boolean wasRight=false;
+        boolean wasRight = false;
         for (Answer ans : answers) {
             TextView ansText = new TextView(getContext());
-            ansText.setLayoutParams(new TableRow.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+            ansText.setTextSize(12);
             ansText.setText(ans.answer);
-            ansText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            ansText.setTextSize(15);
-            if (ans.correct && ans.answer.equals(userAnswer)) {
+            if (ans.correct) {
                 setUserAnswer(ans.answer, true);
-            } else{
-                setUserAnswer(userAnswer, false);
+                if (ans.answer.equals(userAnswer)) {
+                    wasRight = true;
+                }
             }
+        }
+        if (!wasRight) {
+            setUserAnswer(userAnswer, false);
         }
     }
 
@@ -97,6 +99,7 @@ public class FinalPageFragment extends Fragment {
     private void checkMultipleAnswer(ArrayList<Answer> answers, String userAnswer) {
         for (Answer ans : answers) {
             TextView ansText = new TextView(getContext());
+            ansText.setTextSize(12);
             ansText.setText(ans.answer);
             if (ans.correct) {
                 setUserAnswer(ans.answer, true);
@@ -113,6 +116,7 @@ public class FinalPageFragment extends Fragment {
 
     public void setUserAnswer(String userAnswerString, boolean right){
         TextView userAnswer = new TextView(getContext());
+        userAnswer.setTextSize(12);
         userAnswer.setText(userAnswerString);
         if(right) {
             userAnswer.setTextColor(Color.GREEN);

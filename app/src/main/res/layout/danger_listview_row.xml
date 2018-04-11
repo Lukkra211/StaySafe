@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/listView_row_title"
-            android:textColor="#bdbdbd"
+            android:textColor="#000000"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_above="@id/listView_row_additionalInfo"
