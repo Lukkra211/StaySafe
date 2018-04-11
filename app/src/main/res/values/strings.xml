@@ -1,15 +1,21 @@
 <resources>
+    <string name="common_bad_password">Password is incorrect</string>
+    <string name="common_bad_format">Bad format</string>
+    <string name="common_logged_in">You were logged in</string>
+
     <string name="home_btn_virtual" translatable="false">Virtual danger</string>
     <string name="home_btn_real" translatable="false">Real danger</string>
 
-    <string name="register_textView_header">Register</string>
-    <string name="register_editText_nick_hint">Type a nick</string>
-    <string name="register_editText_password_hint">Type a password</string>
-    <string name="register_editText_repeatPassword_hint">Repeat your password</string>
+    <string name="account_textView_header_register">Register</string>
+    <string name="account_textView_header_login">Login</string>
+    <string name="account_editText_nick_hint">Type a nick</string>
+    <string name="account_editText_password_hint">Type a password</string>
+    <string name="account_editText_repeatPassword_hint">Repeat your password</string>
+    <string name="account_button_action_register">Register</string>
+    <string name="account_button_action_login">Login</string>
+    <string name="account_button_switch_to_login">I have an account</string>
+    <string name="account_button_switch_to_register">I have an account</string>
 
-    <string name="login_textView_header">Login</string>
-    <string name="login_editText_nick_hint">Type a nick</string>
-    <string name="login_editText_password_hint">Type a password</string>
 
     <string name="danger_listView_additionalInfo">Minutes to read the article: %d</string>
 

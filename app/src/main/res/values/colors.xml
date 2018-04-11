@@ -11,4 +11,5 @@
     <color name="levelUnknown">#c62828</color>
 
     <color name="backgroundColor">#1b285e</color>
+    <color name="error">#d50000</color>
 </resources>

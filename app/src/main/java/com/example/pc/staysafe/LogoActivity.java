@@ -62,6 +62,6 @@ public class LogoActivity extends Activity {
     };
 
     private void initParams() {
-        this.intent = new Intent(this, LoginActivity.class);
+        this.intent = new Intent(this, AccountActivity.class);
     }
 }

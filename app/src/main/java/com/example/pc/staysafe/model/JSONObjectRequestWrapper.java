@@ -17,7 +17,7 @@ public class JSONObjectRequestWrapper {
     private final String URL_TEMPLATE = "http://app16.sspbrno.cz/eu/%s/API/%s.php";
 
     private static RequestQueue queue;
-    private JSONObject postData;
+    private JSONObject jsonData;
     private String url;
 
 
@@ -25,7 +25,7 @@ public class JSONObjectRequestWrapper {
         if (queue == null) {
             queue = Volley.newRequestQueue(context);
         }
-        postData = new JSONObject();
+        jsonData = new JSONObject();
     }
 
     /**
@@ -42,40 +42,40 @@ public class JSONObjectRequestWrapper {
     /**
      * Add data to POST
      */
-    public JSONObjectRequestWrapper add(String key, int value) throws JSONException {
-        postData.put(key, value);
+    public JSONObjectRequestWrapper put(String key, int value) throws JSONException {
+        jsonData.put(key, value);
         return this;
     }
 
     /**
      * Add data to POST
      */
-    public JSONObjectRequestWrapper add(String key, long value) throws JSONException {
-        postData.put(key, value);
+    public JSONObjectRequestWrapper put(String key, long value) throws JSONException {
+        jsonData.put(key, value);
         return this;
     }
 
     /**
      * Add data to POST
      */
-    public JSONObjectRequestWrapper add(String key, double value) throws JSONException {
-        postData.put(key, value);
+    public JSONObjectRequestWrapper put(String key, double value) throws JSONException {
+        jsonData.put(key, value);
         return this;
     }
 
     /**
      * Add data to POST
      */
-    public JSONObjectRequestWrapper add(String key, Object value) throws JSONException {
-        postData.put(key, value);
+    public JSONObjectRequestWrapper put(String key, Object value) throws JSONException {
+        jsonData.put(key, value);
         return this;
     }
 
     /**
      * Add data to POST
      */
-    public JSONObjectRequestWrapper add(String key, Boolean value) throws JSONException {
-        postData.put(key, value);
+    public JSONObjectRequestWrapper put(String key, Boolean value) throws JSONException {
+        jsonData.put(key, value);
         return this;
     }
 
@@ -85,11 +85,11 @@ public class JSONObjectRequestWrapper {
      * @param errorListener executed wen failed
      */
     public void send(Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
-        queue.add(new JsonObjectRequest(Request.Method.POST, url, postData, listener, errorListener));
+        queue.add(new JsonObjectRequest(Request.Method.POST, url, jsonData, listener, errorListener));
     }
 
     public void send(Response.Listener<JSONObject> listener) {
-        queue.add(new JsonObjectRequest(Request.Method.POST, url, postData, listener, printError));
+        queue.add(new JsonObjectRequest(Request.Method.POST, url, jsonData, listener, printError));
     }
 
     /**
