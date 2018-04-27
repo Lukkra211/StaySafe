@@ -95,7 +95,7 @@ public class RemoteModel {
                     .put(RemoteModel.POST_HASH, password)
                     .send(new OnSuccess(loginOnSuccess, onSuccess),
                           new OnFailure(genericOnFailure, onFailure));
-            progressBarDialog.show("Fuck Olaf, fix your wifi already!!!!!");
+            progressBarDialog.show("Fucking Olaf, fix your wifi already!!!!!");
 
         } catch (JSONException e) {
             Toast.makeText(context, "Wrong format", Toast.LENGTH_LONG).show();
@@ -114,7 +114,7 @@ public class RemoteModel {
                     .put(RemoteModel.POST_HASH, password)
                     .send(new OnSuccess(registerOnSuccess, onSuccess),
                             new OnFailure(genericOnFailure, onFailure));
-            progressBarDialog.show("Fuck Olaf, fix your wifi already!!!!!");
+            progressBarDialog.show("Fucking Olaf, fix your wifi already!!!!!");
 
         } catch (JSONException e) {
             Toast.makeText(context, "Wrong format", Toast.LENGTH_LONG).show();
